@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/c71231073e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/css/datepicker.css">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap">
+    <link rel="stylesheet" href="https://quanlychitieuthanhcong.000webhostapp.com/public/css/footer_mobie.css">
+    <link rel="stylesheet" href="https://quanlychitieuthanhcong.000webhostapp.com/public/css/home.css">
+    <link rel="stylesheet" href="https://quanlychitieuthanhcong.000webhostapp.com/public/css/loading.css">
+    <link rel="shortcut icon" href="https://quanlychitieuthanhcong.000webhostapp.com/public/images/default/icon.ico" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
+    <title>Khoản thu</title>
+</head>
+
+
+<style>
+    #revenue {
+      background-color: black;
+    }
+</style>
+
+<body>
+    <header>
+        <ul>
+            <li class="logo">
+                Money
+            </li>
+            <li class="btn"><span class="fas fa-bars"></span></li>
+            <div class="items">
+                <li><a href="tongquan.html">Tổng quan</a></li>
+                <li><a href="khoanthu.html">Khoản thu</a></li>
+                <li><a href="khoanchi.html">Khoản chi</a></li>
+            </div>
+            <li class="search-icon">
+                                    <label class="icon">
+                        <span class="fa fa-user"></span>
+                    </label>
+                    <input type="text" value="Phạm Đức Thành" readonly>
+                    <ul class="items-user">
+                        <li><a href="https://quanlychitieuthanhcong.000webhostapp.com/home">Home</a></li>
+                        <li><a href="#">Tài khoản</a></li>
+                        <hr>
+                        <li><a href="https://quanlychitieuthanhcong.000webhostapp.com/account/logout">Đăng xuất</a></li>
+                    </ul>
+                            </li>
+        </ul>
+    </header>
+
+    <nav class="mobie-alert navigation navigation--inline">
+        <ul>
+            <li>
+                <a id="overView" class="home-mobie-icon" href="https://quanlychitieuthanhcong.000webhostapp.com/home">
+                    <!-- <span class="title-span-click">Tổng</span> -->
+                    <i class="icon icon--2x fa-solid fa-chart-pie"></i>
+                </a>
+            </li>
+            <li>
+                <a id="revenue" class="home-mobie-icon" href="https://quanlychitieuthanhcong.000webhostapp.com/home/Thu">
+                    <!-- <span class="title-span-click">Thu</span> -->
+                    <i class="icon icon--2x fa-solid fa-hand-holding-dollar"></i>
+                </a>
+            </li>
+            <li>
+                <a id="expense" class="home-mobie-icon" href="https://quanlychitieuthanhcong.000webhostapp.com/home/Chi">
+                    <!-- <span class="title-span-click">Chi</span> -->
+                    <i class="icon icon--2x fa-solid fa-cart-plus"></i>
+                </a>
+            </li>
+            <li>
+                <a id="FinancialJar" class="home-mobie-icon" href="https://quanlychitieuthanhcong.000webhostapp.com/home/usdt/1">
+                    <!-- <span class="title-span-click">Hũ</span> -->
+                    <i class="icon icon--2x fa-solid fa-scale-balanced"></i>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+
+    <div class="hidden"></div>
+
+    <div class="container">
+        <link rel="stylesheet" href="https://quanlychitieuthanhcong.000webhostapp.com/public/css/list.css">
+
+<div class="title-name-list">
+    Danh sách Khoản thu</div>
+<hr>
+<div class="fill-choice">
+
+<input type="hidden" value="revenue" id="The-main-web">
+
+    <div class="p-2">
+        <div class="container-choice-date">
+            <p class="calender-fill-title">Lọc theo ngày</p>
+            <form class="box" id="box-find-this-day">
+                <input type="text" class="datepicker-here form-control" id="Day-picker" data-date-format="dd/mm/yyyy" data-language='en' placeholder="Lựa chọn ngày">
+                <button>Chọn tìm kiếm</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<hr>
+<ul class="list-item-save" id="list-item-save">
+<div class="body-loading">
+    <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+    <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+    </svg>
+</div>
+</ul>
+
+
+<div class="add-item-font">
+    <button id="add-item" data-toggle="modal" data-target="#myModal" href="">
+        <i class="fa-solid fa-circle-plus"></i>
+    </button>
+</div>
+
+<!-- Modal tao moi -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close-models" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thêm Khoản thu</h4>
+            </div>
+            <form method="post" id="form-save-new-value" action="https://quanlychitieuthanhcong.000webhostapp.com/JsonPosessing/save_data/revenue">
+                <div class="modal-body">
+                    <p>Ngày ghi</p>
+                    <input type="date" name="day" id="Day-picker-form" data-date-format="dd/mm/yyyy" placeholder="Lựa chọn ngày" required>
+                    <p>Tên khoản</p>
+                    <input type="text" id="new-value-title" name="name-title" required>
+                    <p>Số tiền</p>
+                    <input type="number" id="new-value-price" name="price" required>
+                    <p>Ghi chú</p>
+                    <textarea name="description" id="new-value-description" cols="30" rows="4"></textarea>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" style="background-color: #5cc4ef"> lưu lại</button>
+                    <button type="button" id="btn-form-close" class="btn btn-default" style="background-color: #d75e5e" data-dismiss="modal">Đóng</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Modal accet xoa -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Xác nhận xóa Khoản thu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="modal-body-title"></p>
+                <p id="modal-body-price"></p>
+                <p id="modal-body-date"></p>
+            </div>
+            <div class="modal-footer">
+                <form id="form-delete-value" method="POST" action="https://quanlychitieuthanhcong.000webhostapp.com/JsonPosessing/delete_data/revenue">
+                    <input type="hidden" name="id" id="modal-form-id">
+                    <button class="btn btn-danger">Xác nhận xóa</button>
+                </form>
+                <button type="button" id="btn-form-delete-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal edit -->
+<div class="modal fade" id="myModalEdit" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close-models" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Chỉnh sửa Khoản thu</h4>
+            </div>
+            <form method="post" id="form-edit-value" action="https://quanlychitieuthanhcong.000webhostapp.com/JsonPosessing/update_data/revenue">
+                <div class="modal-body">
+                    <input type="hidden" id="form-modal-id" name="id" > 
+                    <p>Ngày ghi</p>
+                    <input type="date" id="form-modal-date" name="day" id="Day-picker-form" data-date-format="dd/mm/yyyy" placeholder="Lựa chọn ngày">
+                    <p>Tên khoản</p>
+                    <input type="text" id="form-modal-title" name="name-title">
+                    <p>Số tiền</p>
+                    <input type="number" id="form-modal-price" name="price">
+                    <p>Ghi chú</p>
+                    <textarea id="form-modal-description" name="description" id="" cols="30" rows="4"></textarea>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" style="background-color: #5cc4ef"> lưu lại</button>
+                    <button type="button" id="btn-form-edit-close" class="btn btn-default" style="background-color: #d75e5e" data-dismiss="modal">Đóng</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/js/datepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/js/i18n/datepicker.en.min.js"></script>
+    
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<script type="text/javascript" src="https://quanlychitieuthanhcong.000webhostapp.com/public/javascript/list.js"> </script>
+<script type="text/javascript" src="https://quanlychitieuthanhcong.000webhostapp.com/public/javascript/add_value.js"> </script>    </div>
+    
+    <div class="hidden-footer"></div>
+    <div class="hidden-footer-menu"></div>
+    <style>
+    .disclaimer{
+        display:none;
+    }
+</style>
+    <script>
+        $('header ul li.btn span').click(function() {
+            $('header ul div.items').toggleClass("show");
+            $('header ul li.btn span').toggleClass("show");
+        });
+    </script>
+<div style="text-align:right;position:fixed;z-index:9999999;bottom:0;width:auto;right:1%;cursor:pointer;line-height:0;display:block!important"><a title="Hosted on free web hosting 000webhost.com. Host your own website for FREE." target="_blank" href="https://www.000webhost.com/?utm_source=000webhostapp&utm_campaign=000_logo&utm_medium=website&utm_content=footer_img"><img src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png" alt="www.000webhost.com"></a></div><script>function getCookie(t){for(var e=t+"=",n=decodeURIComponent(document.cookie).split(";"),o=0;o<n.length;o++){for(var i=n[o];" "==i.charAt(0);)i=i.substring(1);if(0==i.indexOf(e))return i.substring(e.length,i.length)}return""}getCookie("hostinger")&&(document.cookie="hostinger=;expires=Thu, 01 Jan 1970 00:00:01 GMT;",location.reload());var wordpressAdminBody=document.getElementsByClassName("wp-admin")[0],notification=document.getElementsByClassName("notice notice-success is-dismissible"),hostingerLogo=document.getElementsByClassName("hlogo"),mainContent=document.getElementsByClassName("notice_content")[0];if(null!=wordpressAdminBody&&0<notification.length&&null!=mainContent){var googleFont=document.createElement("link");googleFontHref=document.createAttribute("href"),googleFontRel=document.createAttribute("rel"),googleFontHref.value="https://fonts.googleapis.com/css?family=Roboto:300,400,600,700",googleFontRel.value="stylesheet",googleFont.setAttributeNode(googleFontHref),googleFont.setAttributeNode(googleFontRel);var css="@media only screen and (max-width: 576px) {#main_content {max-width: 320px !important;} #main_content h1 {font-size: 30px !important;} #main_content h2 {font-size: 40px !important; margin: 20px 0 !important;} #main_content p {font-size: 14px !important;} #main_content .content-wrapper {text-align: center !important;}} @media only screen and (max-width: 781px) {#main_content {margin: auto; justify-content: center; max-width: 445px;}} @media only screen and (max-width: 1325px) {.web-hosting-90-off-image-wrapper {position: absolute; max-width: 95% !important;} .notice_content {justify-content: center;} .web-hosting-90-off-image {opacity: 1;}} @media only screen and (min-width: 769px) {.notice_content {justify-content: space-between;} #main_content {margin-left: 5%; max-width: 445px;} .web-hosting-90-off-image-wrapper {position: absolute; display: flex; justify-content: center; width: 50%; margin-left: 45%;}} .web-hosting-90-off-image {max-width: 90%;} .content-wrapper {min-height: 454px; display: flex; flex-direction: column; justify-content: center; z-index: 5} .notice_content {display: flex; align-items: center;} * {-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;} .upgrade_button_red_sale{box-shadow: 0 2px 4px 0 rgba(255, 69, 70, 0.2); width: 264px; border: 0; border-radius: 3px; background-color: #FF5C62 !important; padding: 15px 55px !important; font-family: 'Roboto', sans-serif; font-size: 16px; font-weight: 600; color: #ffffff;} .upgrade_button_red_sale:hover{color: #ffffff !important; background: #d10303 !important;}",style=document.createElement("style"),sheet=window.document.styleSheets[0];style.styleSheet?style.styleSheet.cssText=css:style.appendChild(document.createTextNode(css)),document.getElementsByTagName("head")[0].appendChild(style),document.getElementsByTagName("head")[0].appendChild(googleFont);var button=document.getElementsByClassName("upgrade_button_red")[0],link=button.parentElement;link.setAttribute("href","https://www.hostinger.com/hosting-starter-offer?utm_source=000webhost&utm_medium=panel&utm_campaign=000-wp"),link.innerHTML='<button class="upgrade_button_red_sale">Claim Deal</button>',(notification=notification[0]).setAttribute("style","padding-bottom: 0; padding-top: 5px; background-color: #040713; background-size: cover; background-repeat: no-repeat; color: #ffffff; border-left-color: #040713;"),notification.className="notice notice-error is-dismissible";var mainContentHolder=document.getElementById("main_content");mainContentHolder.setAttribute("style","padding: 0;"),hostingerLogo[0].remove();var h1Tag=notification.getElementsByTagName("H1")[0];h1Tag.className="000-h1",h1Tag.innerHTML="Black Friday",h1Tag.setAttribute("style",'color: white; font-family: "Roboto", sans-serif; font-size: 48px; font-weight: 700;');var h2Tag=document.createElement("H2");h2Tag.innerHTML="Up to 90% off 4-year hosting plans + free domain, SSL & DDoS protection",h2Tag.setAttribute("style",'color: white; margin: 10px 0 15px 0; font-family: "Roboto", sans-serif; font-size: 16px; font-weight: 400; line-height: 1;'),h1Tag.parentNode.insertBefore(h2Tag,h1Tag.nextSibling);var paragraph=notification.getElementsByTagName("p")[0];paragraph.innerHTML="$<span style='font-size: 80px;'>2.49</span>/mo",paragraph.setAttribute("style",'font-family: "Roboto", sans-serif; font-size: 48px; font-weight: 700; margin: 0;');var list=notification.getElementsByTagName("UL")[0];list.remove();var org_html=mainContent.innerHTML,new_html='<div class="content-wrapper">'+mainContent.innerHTML+'</div><div class="web-hosting-90-off-image-wrapper"><img class="web-hosting-90-off-image" src="https://cdn.000webhost.com/000webhost/promotions/bf-2022-bottom-banner.png"></div>';mainContent.innerHTML=new_html;var saleImage=mainContent.getElementsByClassName("web-hosting-90-off-image")[0]}</script></body>
+
+</html>
